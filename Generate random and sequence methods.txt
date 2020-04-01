@@ -1,0 +1,126 @@
+Random ...
+function makeid(length) {
+var result           = '';
+var characters       = 'abcdefghijklmnopqrstuvwxyz0123456789';
+var charactersLength = characters.length;
+for ( var i = 0; i < length; i++ ) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+}
+   console.log(result)
+}
+--------------
+sequence 
+var chars='abcdefghijklmnopqrstuvwxyz0123456789'.split('');
+var zzz = Math.pow(36, 4) - 1;
+for (var n = 0; n <= zzz; n++) {
+ console.log(n2s(n));
+}
+function n2s (n) {
+    var s = '';
+    while (s.length < 4) {
+        s = chars[n % 36] + s;
+        n = Math.floor(n / 36);        
+    }
+    return s;
+}
+---------------------------
+sequence
+
+
+def alphapetGenerator(chars, length):
+    for letters in product(chars, repeat=length):
+        yield ''.join(letters)
+
+
+def createRandom(mydb, length, sql):
+    letters = string.ascii_lowercase + string.digits
+    loop = tqdm(total=(pow(len(letters), length)), position=0, leave=False)
+    x = 0
+    for word in alphapetGenerator(letters, length):
+        hashVal = hashlib.sha1(word.encode()).hexdigest()
+        cursor = mydb.cursor()
+        val = (word, hashVal)
+        cursor.execute(sql, val)
+        mydb.commit()
+        loop.set_description("Generate RainbowTable....".format(x))
+        loop.update()
+        x = x + 1
+    loop.close()
+-------------------------------------------
+random
+def randomStringDigits(length):
+    lettersAndDigits = string.ascii_lowercase + string.digits + string.ascii_uppercase
+    return ''.join(random.choice(lettersAndDigits) for i in range(length))
+----------------
+sequence
+
+function generate(arr,i,s,len){
+    if(i == 0){
+       console.log(s)
+        return
+    }
+    for(var j=0; j<len; j++){
+        appended= s+ arr[j]
+        generate(arr, i - 1, appended, len)
+
+    }
+    return
+}
+function crack(arr,len){
+    for(var i=1; i<len+1; i++)
+        generate(arr,4,"",len)
+}
+
+
+
+arr = ['a', 'b', 'c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9']
+var len = arr.length;
+crack(arr, len)
+
+
+--------------
+seqeunce recursive 
+var chars='abcdefghijklmnopqrstuvwxyz0123456789'.split('');
+var zzz = Math.pow(36, 4) - 1;
+for (var n = 0; n <= zzz; n++) {
+    insert(n2s(n));
+}
+function n2s (n) {
+    var s = '';
+    while (s.length < 4) {
+        s = chars[n % 36] + s;
+        n = Math.floor(n / 36);
+    }
+    return s;
+}
+--------------------
+sequence 
+/char set
+let charSet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r','s', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
+
+//password length
+let passwordLength = 4;
+const printAllKLength = (set, k) => {
+    //resciece charaset as set and password length as k =4  and set length =36
+    printAllKLengthRec(set, "", set.length, k);
+}
+
+const printAllKLengthRec = (set, prefix, n, k) => {
+    if (k == 0) {
+        insertDB(prefix);
+        return;
+    }
+    for (let i = 0; i < n; ++i) {
+        let newPrefix = prefix + set[i];
+        printAllKLengthRec(set, newPrefix, n, k - 1);
+    }
+}
+
+connection.connect((err) => {
+    if (err) {
+        console.log(err);
+        return;
+    }
+    printAllKLength(charSet, passwordLength);
+});
+
