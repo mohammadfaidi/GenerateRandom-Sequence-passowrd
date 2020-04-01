@@ -123,4 +123,23 @@ connection.connect((err) => {
     }
     printAllKLength(charSet, passwordLength);
 });
+-------------
+sequence 
 
+function Generate(set, enquene, n, k) {
+    if (k == 0) {
+        PushDB(enquene);
+        return;
+    }
+    for (let i = 0; i < n; ++i) {
+        var  dequeue= enquene + set[i];
+        Generate(set, dequeue, n, k - 1);
+    }
+}
+
+
+
+var arr = ['a', 'b', 'c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9'];
+var passwlength=4;
+
+Generate(arr,"",arr.length,passwlength);
